@@ -16,7 +16,7 @@ The standard output for each website is a JSON format result, with the following
 - phones: All phone numbers found on the website.
 - website: Input URL.
 
-If an HTTP error occours, the output will be a terminal print of the error status code and the website inputed.
+If an HTTP error occours, the output will be the error status code and the website inputed.
 
 ## Current Methods
 
