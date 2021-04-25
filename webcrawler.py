@@ -34,8 +34,9 @@ def web_info(url):
     phones = list(filter(lambda x:len(x.replace(' ',''))>9, phones)) # Remove cases with less than 10 valid characters.
     infos['phones'] = phones
 
-    # Output JSON convertion and print
-    print(json.dumps(infos))
+    # Output print and return.
+    print(infos)
+    return(infos)
 
 if __name__ == '__main__':
     
@@ -46,7 +47,16 @@ if __name__ == '__main__':
         url_inputs = [line.replace('\n','') for line in file]
 
     # Concurrent execution.
+    output_data = []
     with concurrent.futures.ProcessPoolExecutor() as executor:
-        executor.map(web_info, url_inputs)
+        results = [executor.submit(web_info, url) for url in url_inputs]
+
+        for f in concurrent.futures.as_completed(results):
+            if(f.result()): # Check if result is not None.
+                output_data.append(f.result())
+
+    # Save the results in JSON format in 'output_data.json' file.
+    with open('output_data.json', 'w') as outfile:
+        json.dump(output_data, outfile)
     
     print("Finished in %s seconds" % (round(time.time() - start_time, 2))) # Total time of execution print.
