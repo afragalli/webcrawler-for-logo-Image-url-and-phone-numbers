@@ -1,4 +1,4 @@
-import sys, requests, re, concurrent.futures, time
+import sys, json, requests, re, concurrent.futures, time
 from bs4 import BeautifulSoup
 
 def web_info(url):
@@ -34,8 +34,8 @@ def web_info(url):
     phones = list(filter(lambda x:len(x.replace(' ',''))>9, phones)) # Remove cases with less than 10 valid characters.
     infos['phones'] = phones
 
-    # Output print.
-    print(infos)
+    # Output JSON convertion and print
+    print(json.dumps(infos))
 
 if __name__ == '__main__':
     

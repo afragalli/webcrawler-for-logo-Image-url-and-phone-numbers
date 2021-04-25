@@ -11,7 +11,7 @@ First, you will need to install Python 3.5+ on your machine, then pip install th
 
 Then, running the webcrawler is just a matter of calling `python3 webcrawler.py input_file.txt` from this repository root, where "input_file.txt" is a list of websites URLs, one per line.
 
-The standard output for each website is terminal print of a dictionary(JSON format) with the following keys:
+The standard output for each website is a JSON format result, with the following information per line:
 - logo: Website's logo image URL.
 - phones: All phone numbers found on the website.
 - website: Input URL.
