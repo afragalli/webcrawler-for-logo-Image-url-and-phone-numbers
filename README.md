@@ -24,7 +24,7 @@ This application process the inputs concurrently and was made to be as generic a
 
 ### Logo Image
 
-To find the logo image, this application searches for the string 'logo' through the classes and tags from the parsed HTML. If positive, then corrects eventualities according the case to output an absolute URL and tests if the image URL extracted is valid.
+To find the logo image, this application searches for the string 'logo' through the classes and tags from the parsed HTML. If positive, then corrects eventualities, according the case, to output an absolute URL if the image URL obtained is valid.
 
 ### Phone Numbers
 
