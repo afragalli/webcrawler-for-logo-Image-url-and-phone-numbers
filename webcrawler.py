@@ -11,7 +11,7 @@ def web_info(url):
     if(html.status_code//100 != 2): # Status code starting with a 2 generally indicates success.
         print("Error Code:",html.status_code, 'website:',url)
         return
-    soup = BeautifulSoup(html.content, "lxml")
+    soup = BeautifulSoup(html.content, "html.parser")
 
     # Search for the logo image.
     image_tags = soup.findAll('img')
@@ -43,8 +43,7 @@ if __name__ == '__main__':
     start_time = time.time() # Time counter variable.
 
     # Read and format the inputs.
-    with open(sys.argv[1], 'r') as file:
-        url_inputs = [line.replace('\n','') for line in file]
+    url_inputs = [line.rstrip('\r\n') for line in sys.stdin]
 
     # Concurrent execution.
     output_data = []
@@ -55,8 +54,9 @@ if __name__ == '__main__':
             if(f.result()): # Check if result is not None.
                 output_data.append(f.result())
 
-    # Save the results in JSON format in 'output_data.json' file.
-    with open('output_data.json', 'w') as outfile:
-        json.dump(output_data, outfile)
+    # Save the results, one per line, unordered and in JSON format in 'output_data' file.
+    with open('output_data', 'w') as outfile:
+        for data in output_data:
+            outfile.write(json.dumps(data)+'\n')
     
     print("Finished in %s seconds" % (round(time.time() - start_time, 2))) # Total time of execution print.

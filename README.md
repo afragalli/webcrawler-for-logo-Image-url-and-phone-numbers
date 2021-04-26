@@ -9,14 +9,14 @@ Please, note that in this current version we don't handle Flash websites, websit
 First, you will need to install Python 3.5+ on your machine, then pip install the dependencies:
 `pip install -r requirements.txt`
 
-Then, running the webcrawler is just a matter of calling `python3 webcrawler.py input_file.txt` from this repository root, where "input_file.txt" is a list of websites URLs, one per line.
+Then, running the webcrawler is just a matter of calling `cat input_file.txt | python3 webcrawler.py` from this repository root, where "input_file.txt" is a list of websites URLs, one per line.
 
 The standard output for each website is a JSON format result, with the following information:
 - logo: Website's logo image URL.
 - phones: All phone numbers found on the website.
 - website: Input URL.
 
-Each output will be printed in the terminal and, when all inputs are processed, the 'output_data.json' file, containing all outputs in JSON format, will be created. If an HTTP error occours, the output will be only a terminal print with the error status code and the website inputed.
+Each output will be printed in the terminal and, when all inputs are processed, the 'output_data' file, containing all outputs, one per line, unordered and in JSON format, will be created. If an HTTP error occours, the output will be only a terminal print with the error status code and the website inputed.
 
 ## Current Methods
 
